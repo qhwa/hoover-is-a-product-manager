@@ -67,4 +67,10 @@ defmodule Hoover.ProductsTest do
       assert %Ecto.Changeset{} = Products.change_product(product)
     end
   end
+
+  describe "import products via CSV" do
+    test "it works with empty CSV" do
+      assert {:ok, 0} == Products.import_from_csv("test/fixtures/empty.csv")
+    end
+  end
 end

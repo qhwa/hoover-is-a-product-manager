@@ -8,6 +8,8 @@ defmodule Hoover.Products do
 
   alias Hoover.Products.Product
 
+  defdelegate import_from_csv(file), to: Product
+
   @doc """
   Returns the list of products.
 
@@ -101,4 +103,5 @@ defmodule Hoover.Products do
   def change_product(%Product{} = product) do
     Product.changeset(product, %{})
   end
+
 end

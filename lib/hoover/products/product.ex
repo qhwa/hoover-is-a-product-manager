@@ -17,4 +17,8 @@ defmodule Hoover.Products.Product do
     |> cast(attrs, [:parter_number, :branch_id, :part_price, :short_desc])
     |> validate_required([:parter_number, :branch_id, :part_price, :short_desc])
   end
+
+  def import_from_csv(content) do
+    {:ok, 0}
+  end
 end
