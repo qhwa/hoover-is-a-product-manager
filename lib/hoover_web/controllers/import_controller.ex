@@ -19,4 +19,10 @@ defmodule HooverWeb.ImportController do
         render(conn, "new.html", changeset: changeset)
     end
   end
+
+  def create(conn, _) do
+    conn
+    |> put_flash(:error, "No products found.")
+    |> redirect(to: Routes.product_path(conn, :index))
+  end
 end
