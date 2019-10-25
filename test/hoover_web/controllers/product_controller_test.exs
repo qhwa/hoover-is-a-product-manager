@@ -25,7 +25,7 @@ defmodule HooverWeb.ProductControllerTest do
   describe "index" do
     test "lists all products", %{conn: conn} do
       conn = get(conn, Routes.product_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Products"
+      assert html_response(conn, 200) =~ "Products"
     end
   end
 

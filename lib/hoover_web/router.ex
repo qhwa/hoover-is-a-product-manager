@@ -17,6 +17,7 @@ defmodule HooverWeb.Router do
     pipe_through :browser
 
     resources "/", ProductController
+    resources "/import", ImportController, only: [:create]
   end
 
   # Other scopes may use custom stacks.

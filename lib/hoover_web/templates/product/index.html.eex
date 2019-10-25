@@ -1,4 +1,14 @@
-<h1>Listing Products</h1>
+<%= form_for @conn, Routes.import_path(@conn, :create), fn f -> %>
+  <div>
+    <h2>Import from a CSV file</h2>
+    <div>
+      <input type="file" name="file" accept=".csv" />
+    </div>
+    <%= submit "import" %>
+  </div>
+<% end %>
+
+<h2>Products</h2>
 
 <table>
   <thead>
