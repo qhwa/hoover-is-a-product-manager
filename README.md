@@ -26,15 +26,15 @@ Be sure to have PostgreSQL running as `config/dev.exs` congfigured.
     * [x] unit tests
     * [x] controller tests
 
-## What is not? (Further developing ideas)
+## What is not implemented? (Further developing ideas)
 
 * [ ] cleanup the unused APIs and tests created on Phoenix initialization.
-* [ ] Transactions. What if some insertion failed during the excution?
-* [ ] CSV validating. There are duplicated `part_number` rows in `test/fixtures/data.csv`. In most case this would be a manual mistake. Should we rejected it?
-* [ ] allow user to delete products not presented in the CSV, as the task mentioned. Maybe I can implement it as following:
+* [ ] Transactions. What if some insertions fail during the execution?
+* [ ] CSV validating. There are duplicated `part_number` rows in `test/fixtures/data.csv`. In most cases this would be a manual mistake. Should we reject it?
+* [ ] Allow user to delete products not presented in the CSV, as the task mentioned. Maybe I can implement it as following:
   * import products as present
   * select all unique `part_number` in the CSV
   * delete all products not in part_numbers above
 * [ ] UI tests
-* [ ] credo for code style check
-* [ ] CI config (maybe overkill for this project but can't live without it. I used git hook locally.)
+* [ ] `credo` for linting
+* [ ] CI config (maybe overkill for this project but can't live without it. I used git hooks locally.)
