@@ -16,7 +16,7 @@ defmodule HooverWeb.Router do
   scope "/", HooverWeb do
     pipe_through :browser
 
-    resources "/", ProductController, only: [:index]
+    resources "/", ProductController
     resources "/import", ImportController, only: [:create]
   end
 

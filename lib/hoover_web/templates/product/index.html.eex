@@ -38,3 +38,5 @@
 <% end %>
   </tbody>
 </table>
+
+<span><%= link "New Product", to: Routes.product_path(@conn, :new) %></span>
