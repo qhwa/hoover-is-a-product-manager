@@ -3,8 +3,18 @@ defmodule HooverWeb.ProductControllerTest do
 
   alias Hoover.Products
 
-  @create_attrs %{branch_id: "some branch_id", part_price: "120.5", parter_number: "some parter_number", short_desc: "some short_desc"}
-  @update_attrs %{branch_id: "some updated branch_id", part_price: "456.7", parter_number: "some updated parter_number", short_desc: "some updated short_desc"}
+  @create_attrs %{
+    branch_id: "some branch_id",
+    part_price: "120.5",
+    parter_number: "some parter_number",
+    short_desc: "some short_desc"
+  }
+  @update_attrs %{
+    branch_id: "some updated branch_id",
+    part_price: "456.7",
+    parter_number: "some updated parter_number",
+    short_desc: "some updated short_desc"
+  }
   @invalid_attrs %{branch_id: nil, part_price: nil, parter_number: nil, short_desc: nil}
 
   def fixture(:product) do
@@ -75,6 +85,7 @@ defmodule HooverWeb.ProductControllerTest do
     test "deletes chosen product", %{conn: conn, product: product} do
       conn = delete(conn, Routes.product_path(conn, :delete, product))
       assert redirected_to(conn) == Routes.product_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.product_path(conn, :show, product))
       end

@@ -10,6 +10,5 @@ defmodule Hoover.Repo.Migrations.CreateProducts do
 
       timestamps()
     end
-
   end
 end

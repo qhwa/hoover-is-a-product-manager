@@ -6,8 +6,18 @@ defmodule Hoover.ProductsTest do
   describe "products" do
     alias Hoover.Products.Product
 
-    @valid_attrs %{branch_id: "some branch_id", part_price: "120.5", parter_number: "some parter_number", short_desc: "some short_desc"}
-    @update_attrs %{branch_id: "some updated branch_id", part_price: "456.7", parter_number: "some updated parter_number", short_desc: "some updated short_desc"}
+    @valid_attrs %{
+      branch_id: "some branch_id",
+      part_price: "120.5",
+      parter_number: "some parter_number",
+      short_desc: "some short_desc"
+    }
+    @update_attrs %{
+      branch_id: "some updated branch_id",
+      part_price: "456.7",
+      parter_number: "some updated parter_number",
+      short_desc: "some updated short_desc"
+    }
     @invalid_attrs %{branch_id: nil, part_price: nil, parter_number: nil, short_desc: nil}
 
     def product_fixture(attrs \\ %{}) do
@@ -70,7 +80,11 @@ defmodule Hoover.ProductsTest do
 
   describe "import products via CSV" do
     test "it works with empty CSV" do
-      assert {:ok, 0} == Products.import_from_csv("test/fixtures/empty.csv")
+      assert {:ok, 0} == Products.import_from_csv({:file, "test/fixtures/empty.csv"})
+    end
+
+    test "it works with example CSV" do
+      assert {:ok, 9} == Products.import_from_csv({:file, "test/fixtures/data.csv"})
     end
   end
 end
