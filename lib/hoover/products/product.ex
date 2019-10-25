@@ -30,28 +30,42 @@ defmodule Hoover.Products.Product do
       path
       |> File.stream!()
       |> Parser.parse_stream()
-      |> Stream.map(fn
-        [part_number, branch_id, part_price, short_desc] ->
-          changeset(%__MODULE__{}, %{
-            part_number: part_number,
-            branch_id: branch_id,
-            part_price: String.to_float(part_price),
-            short_desc: short_desc
-          })
-          |> Repo.insert(on_conflict: :replace_all, conflict_target: :part_number)
-
-        _ ->
-          nil
-      end)
+      |> Stream.map(&insert/1)
       |> Enum.to_list()
       |> Enum.reject(&is_nil/1)
 
-    # TODO: filter only successful insert
     # TODO: what if some inserting failed? should in a transaction
-    {:ok, length(products)}
+    {:ok, success_count(products)}
   end
 
-  def import_from_csv(content) when is_binary(content) do
-    {:ok, 0}
+  defp insert([part_number, branch_id, part_price, short_desc]) do
+    changeset(%__MODULE__{}, %{
+      part_number: part_number,
+      branch_id: branch_id,
+      part_price: String.to_float(part_price),
+      short_desc: short_desc
+    })
+    |> Repo.insert(
+      on_conflict: :replace_all,
+      conflict_target: :part_number
+    )
+  end
+
+  defp insert(_) do
+    nil
+  end
+
+  defp success_count(products) do
+    products
+    |> Enum.map(fn
+      {:ok, %{part_number: pn}} ->
+        pn
+
+      _ ->
+        nil
+    end)
+    |> Enum.reject(&is_nil/1)
+    |> Enum.uniq()
+    |> Enum.count()
   end
 end

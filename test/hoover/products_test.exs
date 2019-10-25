@@ -84,7 +84,7 @@ defmodule Hoover.ProductsTest do
     end
 
     test "it works with example CSV" do
-      assert {:ok, 9} == Products.import_from_csv({:file, "test/fixtures/data.csv"})
+      assert {:ok, 8} == Products.import_from_csv({:file, "test/fixtures/data.csv"})
     end
 
     test "it updates existing records" do
