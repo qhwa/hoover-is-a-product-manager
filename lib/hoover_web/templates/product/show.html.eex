@@ -1,0 +1,28 @@
+<h1>Show Product</h1>
+
+<ul>
+
+  <li>
+    <strong>Parter number:</strong>
+    <%= @product.parter_number %>
+  </li>
+
+  <li>
+    <strong>Branch:</strong>
+    <%= @product.branch_id %>
+  </li>
+
+  <li>
+    <strong>Part price:</strong>
+    <%= @product.part_price %>
+  </li>
+
+  <li>
+    <strong>Short desc:</strong>
+    <%= @product.short_desc %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.product_path(@conn, :edit, @product) %></span>
+<span><%= link "Back", to: Routes.product_path(@conn, :index) %></span>

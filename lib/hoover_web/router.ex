@@ -16,7 +16,7 @@ defmodule HooverWeb.Router do
   scope "/", HooverWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    resources "/", ProductController
   end
 
   # Other scopes may use custom stacks.
