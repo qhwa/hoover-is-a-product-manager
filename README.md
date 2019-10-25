@@ -25,10 +25,10 @@ Be sure to have PostgreSQL running as `config/dev.exs` congfigured.
 * [x] tests
     * [x] unit tests
     * [x] controller tests
+* [x] cleanup the unused APIs and tests created on Phoenix initialization.
 
 ## What is not implemented? (Further developing ideas)
 
-* [ ] cleanup the unused APIs and tests created on Phoenix initialization.
 * [ ] Transactions. What if some insertions fail during the execution?
 * [ ] CSV validating. There are duplicated `part_number` rows in `test/fixtures/data.csv`. In most cases this would be a manual mistake. Should we reject it?
 * [ ] Allow user to delete products not presented in the CSV, as the task mentioned. Maybe I can implement it as following:
