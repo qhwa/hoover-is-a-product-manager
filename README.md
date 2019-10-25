@@ -1,38 +1,20 @@
-Interview task :)
-===============================
+# Hoover
 
-If something is not clear or you need help - just ask :smile:. Nobody knows everything!
+To start your Phoenix server:
 
-1. Read the task
-2. Create a project
-3. Please implement the project according to your own best standards, possibly
-   - Tests, tdd
-   - Code guidelines
-   - Structure / architecture
-   - Refactoring
-   - Conventions
-4. For the layout bootstrap or plain design is enough.
-5. Make sure to commit frequently and feel free to stop working on it after 2-4 hours
-6. Provide an overview which points you would improve if you had more time to work on the project
+  * Install dependencies with `mix deps.get`
+  * Create and migrate your database with `mix ecto.setup`
+  * Install Node.js dependencies with `cd assets && npm install`
+  * Start Phoenix endpoint with `mix phx.server`
 
-Scenario - Product Import via File Upload
----------------------------
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Story: A new kloeckner US branch needs to be onboarded, for this we got a new feature request from our product owner.
+Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-The user should be able to upload a csv to import products into the database. This data should then be shown in a list. 
+## Learn more
 
-The upload should work multiple times and always update the corresponding products.
-Bonus Feature: Products that are not in the CSV get deleted (can be enabled via checkbox)
-
-Lines in the CSV represent steel products.
-
-An example CSV is in the repo. 
-Here is some help to understand the CSV structure:
-
-PART_NUMBER = identifier for a product
-BRANCH_ID = which kloeckner branch produces the product (TUC = tucson, CIN = cincinnati)
-PART_PRICE = price in USD
-SHORT_DESC = short description text about the product
-
-Have fun!
+  * Official website: http://www.phoenixframework.org/
+  * Guides: https://hexdocs.pm/phoenix/overview.html
+  * Docs: https://hexdocs.pm/phoenix
+  * Mailing list: http://groups.google.com/group/phoenix-talk
+  * Source: https://github.com/phoenixframework/phoenix
