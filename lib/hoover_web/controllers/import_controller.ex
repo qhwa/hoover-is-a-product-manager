@@ -5,9 +5,14 @@ defmodule HooverWeb.ImportController do
 
   def create(conn, %{"file" => %Plug.Upload{path: path}}) do
     case Products.import_from_csv({:file, path}) do
+      {:ok, 0} ->
+        conn
+        |> put_flash(:error, "No products found.")
+        |> redirect(to: Routes.product_path(conn, :index))
+
       {:ok, count} ->
         conn
-        |> put_flash(:info, "#{count} products imported successfully.")
+        |> put_flash(:info, "#{count} products were successfully imported.")
         |> redirect(to: Routes.product_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
