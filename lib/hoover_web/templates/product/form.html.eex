@@ -5,9 +5,9 @@
     </div>
   <% end %>
 
-  <%= label f, :parter_number %>
-  <%= text_input f, :parter_number %>
-  <%= error_tag f, :parter_number %>
+  <%= label f, :part_number %>
+  <%= text_input f, :part_number %>
+  <%= error_tag f, :part_number %>
 
   <%= label f, :branch_id %>
   <%= text_input f, :branch_id %>

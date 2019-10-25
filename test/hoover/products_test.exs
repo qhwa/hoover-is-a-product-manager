@@ -9,16 +9,16 @@ defmodule Hoover.ProductsTest do
     @valid_attrs %{
       branch_id: "some branch_id",
       part_price: "120.5",
-      parter_number: "some parter_number",
+      part_number: "some part_number",
       short_desc: "some short_desc"
     }
     @update_attrs %{
       branch_id: "some updated branch_id",
       part_price: "456.7",
-      parter_number: "some updated parter_number",
+      part_number: "some updated part_number",
       short_desc: "some updated short_desc"
     }
-    @invalid_attrs %{branch_id: nil, part_price: nil, parter_number: nil, short_desc: nil}
+    @invalid_attrs %{branch_id: nil, part_price: nil, part_number: nil, short_desc: nil}
 
     def product_fixture(attrs \\ %{}) do
       {:ok, product} =
@@ -43,7 +43,7 @@ defmodule Hoover.ProductsTest do
       assert {:ok, %Product{} = product} = Products.create_product(@valid_attrs)
       assert product.branch_id == "some branch_id"
       assert product.part_price == Decimal.new("120.5")
-      assert product.parter_number == "some parter_number"
+      assert product.part_number == "some part_number"
       assert product.short_desc == "some short_desc"
     end
 
@@ -56,7 +56,7 @@ defmodule Hoover.ProductsTest do
       assert {:ok, %Product{} = product} = Products.update_product(product, @update_attrs)
       assert product.branch_id == "some updated branch_id"
       assert product.part_price == Decimal.new("456.7")
-      assert product.parter_number == "some updated parter_number"
+      assert product.part_number == "some updated part_number"
       assert product.short_desc == "some updated short_desc"
     end
 
@@ -85,6 +85,13 @@ defmodule Hoover.ProductsTest do
 
     test "it works with example CSV" do
       assert {:ok, 9} == Products.import_from_csv({:file, "test/fixtures/data.csv"})
+    end
+
+    test "it updates existing records" do
+      Products.import_from_csv({:file, "test/fixtures/data.csv"})
+      Products.import_from_csv({:file, "test/fixtures/data.csv"})
+
+      assert Hoover.Repo.aggregate(from(p in "products"), :count, :id) == 8
     end
   end
 end

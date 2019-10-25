@@ -13,7 +13,7 @@
 <table>
   <thead>
     <tr>
-      <th>Parter number</th>
+      <th>Part number</th>
       <th>Branch</th>
       <th>Part price</th>
       <th>Short desc</th>
@@ -24,7 +24,7 @@
   <tbody>
 <%= for product <- @products do %>
     <tr>
-      <td><%= product.parter_number %></td>
+      <td><%= product.part_number %></td>
       <td><%= product.branch_id %></td>
       <td><%= product.part_price %></td>
       <td><%= product.short_desc %></td>

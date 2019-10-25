@@ -6,16 +6,16 @@ defmodule HooverWeb.ProductControllerTest do
   @create_attrs %{
     branch_id: "some branch_id",
     part_price: "120.5",
-    parter_number: "some parter_number",
+    part_number: "some part_number",
     short_desc: "some short_desc"
   }
   @update_attrs %{
     branch_id: "some updated branch_id",
     part_price: "456.7",
-    parter_number: "some updated parter_number",
+    part_number: "some updated part_number",
     short_desc: "some updated short_desc"
   }
-  @invalid_attrs %{branch_id: nil, part_price: nil, parter_number: nil, short_desc: nil}
+  @invalid_attrs %{branch_id: nil, part_price: nil, part_number: nil, short_desc: nil}
 
   def fixture(:product) do
     {:ok, product} = Products.create_product(@create_attrs)

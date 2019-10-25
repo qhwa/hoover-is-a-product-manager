@@ -9,7 +9,7 @@ defmodule Hoover.Products.Product do
   schema "products" do
     field :branch_id, :string
     field :part_price, :decimal
-    field :parter_number, :string
+    field :part_number, :string
     field :short_desc, :string
 
     timestamps()
@@ -18,8 +18,8 @@ defmodule Hoover.Products.Product do
   @doc false
   def changeset(product, attrs) do
     product
-    |> cast(attrs, [:parter_number, :branch_id, :part_price, :short_desc])
-    |> validate_required([:parter_number, :branch_id, :part_price, :short_desc])
+    |> cast(attrs, [:part_number, :branch_id, :part_price, :short_desc])
+    |> validate_required([:part_number, :branch_id, :part_price, :short_desc])
   end
 
   @doc """
@@ -31,14 +31,14 @@ defmodule Hoover.Products.Product do
       |> File.stream!()
       |> Parser.parse_stream()
       |> Stream.map(fn
-        [parter_number, branch_id, part_price, short_desc] ->
+        [part_number, branch_id, part_price, short_desc] ->
           changeset(%__MODULE__{}, %{
-            parter_number: parter_number,
+            part_number: part_number,
             branch_id: branch_id,
             part_price: String.to_float(part_price),
             short_desc: short_desc
           })
-          |> Repo.insert()
+          |> Repo.insert(on_conflict: :replace_all, conflict_target: :part_number)
 
         _ ->
           nil

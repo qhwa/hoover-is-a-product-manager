@@ -3,8 +3,8 @@
 <ul>
 
   <li>
-    <strong>Parter number:</strong>
-    <%= @product.parter_number %>
+    <strong>Part number:</strong>
+    <%= @product.part_number %>
   </li>
 
   <li>
