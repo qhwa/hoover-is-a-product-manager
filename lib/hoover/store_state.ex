@@ -28,13 +28,13 @@ defmodule Hoover.StoreState do
   @doc """
   Import products from an external CSV file stream.
   """
-  @spec import_from_csv(Enumerable.t()) :: ok
+  @spec import_from_csv(Enumerable.t()) :: :ok
   def import_from_csv(file_stream) do
     with csv_stream <- CSV.decode(file_stream, separator: ?|, headers: true) do
       csv_stream
       |> Stream.map(&parse_line/1)
       |> Stream.take_while(&match?(%Product{}, &1))
-      |> add_products()
+      |> add()
     end
   end
 
