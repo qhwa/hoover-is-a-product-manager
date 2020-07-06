@@ -8,7 +8,7 @@ defmodule HooverWebTest do
 
   setup do
     GenServer.whereis(StoreState)
-    |> :sys.replace_state(fn _ -> %{} end)
+    |> :sys.replace_state(fn _ -> Store.new([]) end)
 
     :ok
   end
@@ -49,6 +49,13 @@ defmodule HooverWebTest do
       assert conn.resp_headers |> Enum.any?(&match?({"location", "/"}, &1))
       assert 20 == length(actual)
       refute actual |> Enum.any?(&(&1.part_number == "0"))
+    end
+  end
+
+  describe "Error Routes" do
+    test "404" do
+      conn = conn(:get, "/foo") |> HooverWeb.Router.call(@opts)
+      assert conn.status == 404
     end
   end
 
