@@ -1,4 +1,8 @@
 defmodule Hoover.StoreState do
+  @moduledoc """
+  Module used for managing states for a product store.
+  """
+
   use Agent
 
   def start_link(_arg),

@@ -1,4 +1,8 @@
 defmodule HooverWeb.Server do
+  @moduledoc """
+  Web server entrypoint.
+  """
+
   def child_spec(opts) do
     server_opts = [
       options: opts,
