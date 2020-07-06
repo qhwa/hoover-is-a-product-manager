@@ -11,21 +11,21 @@ defmodule Hoover.StoreState do
   @doc """
   Add a list of products into the store.
   """
-  @spec add(list(Product.t())) :: :ok
+  @spec add(Enumerable.t()) :: :ok
   def add(products),
     do: Agent.update(__MODULE__, &Store.add_products(&1, products))
 
   @doc """
   Replace current store with a list of products.
   """
-  @spec set(list(Product.t())) :: :ok
+  @spec set(Enumerable.t()) :: :ok
   def set(products),
     do: Agent.update(__MODULE__, fn _ -> Store.new(products) end)
 
   @doc """
   Get current products
   """
-  @spec products() :: list(Product.t())
+  @spec products() :: Enumerable.t()
   def products(),
     do: Agent.get(__MODULE__, & &1) |> Map.values()
 
