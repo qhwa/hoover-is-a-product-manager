@@ -14,7 +14,8 @@ defmodule Hoover.MixProject do
         "coveralls.detail": :test,
         "coveralls.post": :test,
         "coveralls.html": :test
-      ]
+      ],
+      aliases: aliases()
     ]
   end
 
@@ -39,6 +40,12 @@ defmodule Hoover.MixProject do
       {:dialyxir, "~> 1.0.0", only: :dev, runtime: false},
       {:git_hooks, "~> 0.4.2", only: [:test, :dev], runtime: false},
       {:excoveralls, "~> 0.13", only: :test}
+    ]
+  end
+
+  defp aliases do
+    [
+      up: ["deps.get", "run --no-halt"]
     ]
   end
 end
