@@ -28,7 +28,7 @@ defmodule HooverWeb.Router do
          %File.Stream{} = stream <- File.stream!(path),
          :ok <- import_products(stream, conn.params) do
       conn
-      |> put_resp_header("Location", "/")
+      |> put_resp_header("location", "/")
       |> send_resp(302, "successfully imported!")
     end
   end
