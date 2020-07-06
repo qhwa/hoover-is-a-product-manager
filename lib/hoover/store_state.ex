@@ -29,13 +29,14 @@ defmodule Hoover.StoreState do
   Import products from an external CSV file stream.
   """
   @spec import_from_csv(Enumerable.t()) :: :ok
-  def import_from_csv(file_stream) do
-    with csv_stream <- CSV.decode(file_stream, separator: ?|, headers: true) do
-      csv_stream
-      |> Stream.map(&parse_line/1)
-      |> Stream.take_while(&match?(%Product{}, &1))
-      |> add()
-    end
+  def import_from_csv(file_stream),
+    do: file_stream |> product_stream() |> add()
+
+  defp product_stream(file_stream) do
+    file_stream
+    |> CSV.decode(separator: ?|, headers: true)
+    |> Stream.map(&parse_line/1)
+    |> Stream.take_while(&match?(%Product{}, &1))
   end
 
   defp parse_line(
@@ -55,4 +56,12 @@ defmodule Hoover.StoreState do
        }
 
   defp parse_line({:error, reason}), do: {:error, reason}
+
+  @doc """
+  Import products from an external CSV file stream, all products not
+  presenting in the CSV will get deleted.
+  """
+  @spec replace_with_csv(Enumerable.t()) :: :ok
+  def replace_with_csv(file_stream),
+    do: file_stream |> product_stream() |> set()
 end
